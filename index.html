@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Cuaderno Digital - Agenda Elegante</title>
+    <title>Cuaderno Digital Nexus - Futurista</title>
     <style>
         * {
             margin: 0;
@@ -12,49 +12,81 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', sans-serif;
+            background: radial-gradient(circle at 20% 30%, #0a0a0f 0%, #030305 100%);
             min-height: 100vh;
             padding: 2rem;
-            color: #1a2a3a;
+            color: #e8e8ff;
+            position: relative;
         }
 
-        /* Contenedor principal */
+        /* Efecto de grid futurista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header elegante */
+        /* Header futurista */
         .header {
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00ffff 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
+            animation: shimmer 3s linear infinite;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .header p {
-            color: #5a6e7c;
+            color: #8b8bff;
             margin-top: 0.5rem;
             font-weight: 400;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
         }
 
-        /* Navegador de días */
+        /* Navegador futurista */
         .day-navigator {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 1rem;
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 1.25rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .day-controls {
@@ -71,20 +103,23 @@
         }
 
         .nav-btn {
-            background: #f0f2f5;
-            border: none;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             width: 44px;
             height: 44px;
             border-radius: 1rem;
             cursor: pointer;
             font-size: 1.25rem;
-            transition: all 0.2s ease;
-            color: #2c3e50;
+            transition: all 0.3s ease;
+            color: #00ffff;
+            backdrop-filter: blur(5px);
         }
 
         .nav-btn:hover {
-            background: #e0e4e9;
+            background: rgba(0, 255, 255, 0.3);
             transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            border-color: #00ffff;
         }
 
         .date-display {
@@ -93,33 +128,37 @@
         }
 
         .date-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
+            backdrop-filter: blur(10px);
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             display: inline-block;
-            color: white;
+            color: #00ffff;
             font-weight: 600;
             font-size: 1.1rem;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .go-today {
-            background: white;
-            border: 1px solid #e0e4e9;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.2s;
-            color: #4a5568;
+            transition: all 0.3s;
+            color: #00ffff;
+            backdrop-filter: blur(5px);
         }
 
         .go-today:hover {
-            background: #f7f9fc;
-            border-color: #cbd5e0;
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
 
-        /* Selector de mes */
+        /* Selector de mes futurista */
         .month-selector {
             display: flex;
             gap: 0.5rem;
@@ -129,26 +168,31 @@
         }
 
         .month-btn {
-            background: transparent;
-            border: none;
+            background: rgba(10, 10, 20, 0.6);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             cursor: pointer;
             font-size: 0.9rem;
-            color: #5a6e7c;
-            transition: all 0.2s;
+            color: #8b8bff;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
         }
 
         .month-btn:hover {
-            background: #e9ecef;
+            background: rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+            color: #00ffff;
         }
 
         .month-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
+            border-color: #00ffff;
+            color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
 
-        /* Grid de días */
+        /* Grid de días futurista */
         .days-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -156,35 +200,52 @@
             margin-bottom: 2rem;
         }
 
-        /* Tarjeta de día */
+        /* Tarjeta de día futurista */
         .day-card {
-            background: white;
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(10px);
             border-radius: 1.5rem;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 255, 255, 0.2);
             transition: all 0.3s ease;
             cursor: pointer;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .day-card:hover::before {
+            left: 100%;
         }
 
         .day-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
         }
 
         .day-card-header {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
             padding: 1rem;
-            border-bottom: 2px solid #f0f2f5;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
             font-weight: 600;
             font-size: 1.1rem;
-            color: #2c3e50;
+            color: #00ffff;
         }
 
         .day-card-preview {
             padding: 1rem;
             min-height: 120px;
-            color: #4a5568;
+            color: #c0c0ff;
             font-size: 0.9rem;
             line-height: 1.5;
             white-space: pre-wrap;
@@ -192,11 +253,11 @@
         }
 
         .empty-preview {
-            color: #cbd5e0;
+            color: rgba(0, 255, 255, 0.3);
             font-style: italic;
         }
 
-        /* Modal principal (editor de día) */
+        /* Modal futurista */
         .modal {
             display: none;
             position: fixed;
@@ -204,8 +265,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -217,49 +278,61 @@
         }
 
         .modal-content {
-            background: white;
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(20px);
             border-radius: 2rem;
             max-width: 800px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.1);
         }
 
         .modal-header {
             padding: 1.5rem;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
-            background: white;
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(20px);
             border-radius: 2rem 2rem 0 0;
         }
 
         .modal-header h2 {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #1e3c72;
+            background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .close-modal {
-            background: #f0f2f5;
-            border: none;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             width: 36px;
             height: 36px;
             border-radius: 1rem;
             cursor: pointer;
             font-size: 1.2rem;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            color: #00ffff;
+        }
+
+        .close-modal:hover {
+            background: rgba(0, 255, 255, 0.3);
+            transform: rotate(90deg);
         }
 
         .modal-body {
             padding: 1.5rem;
         }
 
-        /* Áreas de notas estilo cuaderno */
+        /* Áreas de notas estilo cyber */
         .note-section {
             margin-bottom: 2rem;
         }
@@ -267,27 +340,35 @@
         .section-title {
             font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             font-weight: 600;
-            color: #667eea;
+            color: #00ffff;
             margin-bottom: 0.75rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         textarea, input {
             width: 100%;
             padding: 1rem;
-            border: 1px solid #e2e8f0;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             border-radius: 1rem;
             font-family: inherit;
             font-size: 0.95rem;
-            transition: all 0.2s;
+            transition: all 0.3s;
             resize: vertical;
+            color: #e8e8ff;
         }
 
         textarea:focus, input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        textarea::placeholder, input::placeholder {
+            color: rgba(0, 255, 255, 0.3);
         }
 
         .todo-list {
@@ -299,25 +380,34 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.75rem;
-            background: #f8fafc;
+            background: rgba(0, 255, 255, 0.05);
             border-radius: 0.75rem;
             margin-bottom: 0.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .todo-item:hover {
+            border-color: rgba(0, 255, 255, 0.3);
+            background: rgba(0, 255, 255, 0.1);
         }
 
         .todo-item input[type="checkbox"] {
             width: auto;
             margin: 0;
             transform: scale(1.2);
+            accent-color: #00ffff;
         }
 
         .todo-item span {
             flex: 1;
             font-size: 0.95rem;
+            color: #c0c0ff;
         }
 
         .todo-item.completed span {
             text-decoration: line-through;
-            color: #94a3b8;
+            color: rgba(0, 255, 255, 0.4);
         }
 
         .add-todo {
@@ -332,23 +422,39 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
+            background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.5);
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #00ffff40 0%, #ff00ff40 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transform: scale(1.02);
         }
 
         .btn-secondary {
-            background: #f0f2f5;
-            border: none;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             cursor: pointer;
             font-weight: 500;
+            transition: all 0.3s;
+            color: #8b8bff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+            color: #00ffff;
         }
 
         .modal-actions {
@@ -357,18 +463,41 @@
             justify-content: flex-end;
             margin-top: 2rem;
             padding-top: 1rem;
-            border-top: 1px solid #e9ecef;
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
         }
 
-        /* Estadísticas */
+        /* Estadísticas futuristas */
         .stats {
-            background: white;
+            background: rgba(10, 10, 20, 0.6);
+            backdrop-filter: blur(10px);
             border-radius: 1.5rem;
             padding: 1rem 1.5rem;
             margin-top: 2rem;
             text-align: center;
-            color: #5a6e7c;
+            color: #8b8bff;
             font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
         }
 
         @media (max-width: 768px) {
@@ -383,14 +512,32 @@
             .days-grid {
                 grid-template-columns: 1fr;
             }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Efecto de brillo en elementos activos */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .date-card, .month-btn.active {
+            animation: pulse 2s ease-in-out infinite;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>📔 Cuaderno Digital</h1>
-            <p>Tu agenda personal · Notas · Ideas · Tareas</p>
+            <h1>⚡ NEXUS NOTE ⚡</h1>
+            <p>CUADERNO DIGITAL · AGENDA FUTURISTA · SISTEMA NEXUS</p>
         </div>
 
         <div class="day-navigator">
@@ -402,7 +549,7 @@
                 <div class="date-display">
                     <div class="date-card" id="currentMonthYear">Enero 2024</div>
                 </div>
-                <button class="go-today" id="goToday">📅 Hoy</button>
+                <button class="go-today" id="goToday">📅 HOY</button>
             </div>
             <div class="month-selector" id="monthSelector"></div>
         </div>
@@ -410,7 +557,7 @@
         <div id="daysGrid" class="days-grid"></div>
 
         <div class="stats" id="stats">
-            Cargando estadísticas...
+            <span>🌀 INICIALIZANDO SISTEMA NEXUS...</span>
         </div>
     </div>
 
@@ -423,22 +570,22 @@
             </div>
             <div class="modal-body">
                 <div class="note-section">
-                    <div class="section-title">📝 NOTAS RÁPIDAS</div>
-                    <textarea id="notesContent" rows="4" placeholder="Escribe tus notas, ideas, reflexiones..."></textarea>
+                    <div class="section-title">📝 NOTAS NEXUS</div>
+                    <textarea id="notesContent" rows="4" placeholder="Registra tus ideas, reflexiones y datos importantes..."></textarea>
                 </div>
 
                 <div class="note-section">
-                    <div class="section-title">✅ LISTA DE TAREAS</div>
+                    <div class="section-title">✅ SISTEMA DE TAREAS</div>
                     <div id="todoListContainer" class="todo-list"></div>
                     <div class="add-todo">
                         <input type="text" id="newTodoInput" placeholder="Nueva tarea...">
-                        <button class="btn-primary" id="addTodoBtn">+ Añadir</button>
+                        <button class="btn-primary" id="addTodoBtn">+ AÑADIR</button>
                     </div>
                 </div>
 
                 <div class="modal-actions">
-                    <button class="btn-secondary" id="cancelModal">Cancelar</button>
-                    <button class="btn-primary" id="saveDayBtn">Guardar Día</button>
+                    <button class="btn-secondary" id="cancelModal">CANCELAR</button>
+                    <button class="btn-primary" id="saveDayBtn">GUARDAR</button>
                 </div>
             </div>
         </div>
@@ -452,17 +599,18 @@
 
         // Cargar datos guardados
         function loadData() {
-            const saved = localStorage.getItem('elegantNotebook');
+            const saved = localStorage.getItem('nexusNotebook');
             if (saved) {
                 notebookData = JSON.parse(saved);
             } else {
-                // Datos de ejemplo
+                // Datos de ejemplo futuristas
                 const today = new Date().toISOString().split('T')[0];
                 notebookData[today] = {
-                    notes: "¡Bienvenido a tu cuaderno digital! ✨\n\nEste es tu espacio personal para capturar ideas, notas y tareas. Cada día es una nueva hoja en tu agenda.",
+                    notes: "⚡ BIENVENIDO AL SISTEMA NEXUS ⚡\n\nEste es tu cuaderno digital de próxima generación. Registra tus ideas, proyectos y tareas con estilo futurista.\n\n\"El futuro pertenece a quienes organizan su presente con visión.\"",
                     todos: [
-                        { id: Date.now(), text: "Explorar el cuaderno", completed: false },
-                        { id: Date.now() + 1, text: "Agregar notas importantes", completed: false }
+                        { id: Date.now(), text: "Explorar interfaz Nexus", completed: false },
+                        { id: Date.now() + 1, text: "Registrar primeras notas", completed: false },
+                        { id: Date.now() + 2, text: "Configurar objetivos diarios", completed: false }
                     ]
                 };
             }
@@ -470,7 +618,7 @@
 
         // Guardar datos
         function saveData() {
-            localStorage.setItem('elegantNotebook', JSON.stringify(notebookData));
+            localStorage.setItem('nexusNotebook', JSON.stringify(notebookData));
             renderCurrentView();
             updateStats();
         }
@@ -493,7 +641,7 @@
 
         // Obtener nombre del día
         function getDayName(date) {
-            const days = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+            const days = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
             return days[date.getDay()];
         }
 
@@ -531,24 +679,24 @@
                 days.push({ date, isCurrentMonth: false });
             }
             
-            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            const monthNames = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
             document.getElementById('currentMonthYear').textContent = `${monthNames[month]} ${year}`;
             
             const grid = document.getElementById('daysGrid');
             grid.innerHTML = days.map(day => {
                 const dateStr = formatDate(day.date);
                 const dayData = notebookData[dateStr] || { notes: "", todos: [] };
-                const preview = dayData.notes ? dayData.notes.substring(0, 80) : (dayData.todos.length > 0 ? `📋 ${dayData.todos.length} tareas` : "Sin notas");
+                const preview = dayData.notes ? dayData.notes.substring(0, 80) : (dayData.todos.length > 0 ? `📋 ${dayData.todos.length} tareas` : "⚡ SIN DATOS");
                 const hasContent = dayData.notes || dayData.todos.length > 0;
                 
                 return `
                     <div class="day-card" data-date="${dateStr}">
                         <div class="day-card-header">
-                            ${getDayName(day.date)} ${day.date.getDate()}
-                            ${!day.isCurrentMonth ? '<span style="opacity:0.5; font-size:0.8rem;"> · otro mes</span>' : ''}
+                            ${getDayName(day.date)} · ${day.date.getDate()}
+                            ${!day.isCurrentMonth ? '<span style="opacity:0.4; font-size:0.7rem;"> [OFFLINE]</span>' : ''}
                         </div>
                         <div class="day-card-preview">
-                            ${hasContent ? preview : '<span class="empty-preview">✨ Vacío · Toca para escribir</span>'}
+                            ${hasContent ? preview : '<span class="empty-preview">🌀 NEXUS VACÍO · ACTIVAR</span>'}
                         </div>
                     </div>
                 `;
@@ -567,7 +715,7 @@
         
         function updateMonthSelector() {
             const container = document.getElementById('monthSelector');
-            const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+            const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
             const currentMonth = currentDate.getMonth();
             const currentYear = currentDate.getFullYear();
             
@@ -590,7 +738,7 @@
             const date = new Date(dateStr);
             const dayData = getDayData(dateStr);
             
-            document.getElementById('modalDateTitle').textContent = `${getDayName(date)} ${date.getDate()} de ${date.toLocaleString('es', { month: 'long' })} ${date.getFullYear()}`;
+            document.getElementById('modalDateTitle').textContent = `${getDayName(date)} ${date.getDate()} · ${date.toLocaleString('es', { month: 'long' }).toUpperCase()} ${date.getFullYear()}`;
             document.getElementById('notesContent').value = dayData.notes || '';
             
             renderTodoList(dayData.todos);
@@ -601,7 +749,7 @@
         function renderTodoList(todos) {
             const container = document.getElementById('todoListContainer');
             if (!todos || todos.length === 0) {
-                container.innerHTML = '<p style="color:#cbd5e0; text-align:center; padding:1rem;">No hay tareas · Añade tu primera tarea ✨</p>';
+                container.innerHTML = '<p style="color:rgba(0, 255, 255, 0.4); text-align:center; padding:1rem;">⚡ SIN TAREAS · AÑADIR MÓDULOS</p>';
                 return;
             }
             
@@ -609,7 +757,7 @@
                 <div class="todo-item ${todo.completed ? 'completed' : ''}" data-id="${todo.id}">
                     <input type="checkbox" ${todo.completed ? 'checked' : ''} class="todo-checkbox">
                     <span>${escapeHtml(todo.text)}</span>
-                    <button class="delete-todo" style="background:none; border:none; cursor:pointer; color:#e53e3e;">🗑️</button>
+                    <button class="delete-todo" style="background:none; border:none; cursor:pointer; color:#ff00ff;">🗑️</button>
                 </div>
             `).join('');
             
@@ -669,8 +817,8 @@
             });
             
             document.getElementById('stats').innerHTML = `
-                📊 Estadísticas · ${totalDays} días con entradas · ${totalNotes} días con notas · ${totalTodos} tareas registradas
-                <br>💾 Todos los datos se guardan automáticamente en tu navegador
+                <span>🌀 NEXUS STATS · ${totalDays} DÍAS ACTIVOS · ${totalNotes} REGISTROS · ${totalTodos} TAREAS</span>
+                <br><span style="font-size:0.8rem;">💾 DATOS SINCRONIZADOS · ALMACENAMIENTO LOCAL</span>
             `;
         }
         
