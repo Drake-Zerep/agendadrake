@@ -20,7 +20,6 @@
             position: relative;
         }
 
-        /* Efecto de grid futurista */
         body::before {
             content: '';
             position: fixed;
@@ -43,11 +42,9 @@
             z-index: 1;
         }
 
-        /* Header futurista */
         .header {
             text-align: center;
             margin-bottom: 2rem;
-            position: relative;
         }
 
         .header h1 {
@@ -71,44 +68,158 @@
         .header p {
             color: #8b8bff;
             margin-top: 0.5rem;
-            font-weight: 400;
             letter-spacing: 1px;
             font-size: 0.9rem;
             text-transform: uppercase;
-            backdrop-filter: blur(10px);
         }
 
-        /* Sección de autenticación */
-        .auth-section {
-            background: rgba(10, 10, 20, 0.8);
+        /* Autenticación mejorada */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .auth-card {
+            background: rgba(10, 10, 20, 0.9);
             backdrop-filter: blur(20px);
             border-radius: 2rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            text-align: center;
+            padding: 2.5rem;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 450px;
         }
 
-        .user-info {
+        .auth-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        .auth-tab {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 0.75rem;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #8b8bff;
+            transition: all 0.3s;
+            border-radius: 0.5rem;
+        }
+
+        .auth-tab.active {
+            background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .auth-form.hidden {
+            display: none;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            color: #00ffff;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 0.875rem 1rem;
+            border-radius: 1rem;
+            color: #e8e8ff;
+            font-size: 1rem;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .auth-button {
+            background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            padding: 0.875rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            color: #00ffff;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .auth-button:hover {
+            background: linear-gradient(135deg, #00ffff40 0%, #ff00ff40 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            transform: scale(1.02);
+        }
+
+        .message {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        .message.error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #ff6666;
+        }
+
+        .message.success {
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #66ff66;
+        }
+
+        /* User info bar */
+        .user-bar {
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            margin-bottom: 1rem;
         }
 
         .user-email {
             color: #00ffff;
             font-weight: 600;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .logout-btn {
             background: rgba(255, 0, 255, 0.2);
             border: 1px solid rgba(255, 0, 255, 0.3);
             padding: 0.5rem 1rem;
-            border-radius: 1rem;
+            border-radius: 0.75rem;
             cursor: pointer;
             color: #ff00ff;
             transition: all 0.3s;
@@ -119,44 +230,7 @@
             box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
         }
 
-        .auth-forms {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .auth-input {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            padding: 0.75rem 1rem;
-            border-radius: 1rem;
-            color: #e8e8ff;
-            width: 250px;
-        }
-
-        .auth-input:focus {
-            outline: none;
-            border-color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-        }
-
-        .auth-btn {
-            background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
-            border: 1px solid rgba(0, 255, 255, 0.5);
-            padding: 0.75rem 1.5rem;
-            border-radius: 1rem;
-            cursor: pointer;
-            color: #00ffff;
-            transition: all 0.3s;
-        }
-
-        .auth-btn:hover {
-            background: linear-gradient(135deg, #00ffff40 0%, #ff00ff40 100%);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-        }
-
-        /* Navegador futurista */
+        /* Resto de estilos (igual que antes) */
         .day-navigator {
             background: rgba(10, 10, 20, 0.8);
             backdrop-filter: blur(20px);
@@ -164,7 +238,6 @@
             padding: 1.25rem;
             margin-bottom: 2rem;
             border: 1px solid rgba(0, 255, 255, 0.2);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
         .day-controls {
@@ -188,16 +261,13 @@
             border-radius: 1rem;
             cursor: pointer;
             font-size: 1.25rem;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             color: #00ffff;
-            backdrop-filter: blur(5px);
         }
 
         .nav-btn:hover {
             background: rgba(0, 255, 255, 0.3);
             transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            border-color: #00ffff;
         }
 
         .date-display {
@@ -207,15 +277,12 @@
 
         .date-card {
             background: linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, rgba(255, 0, 255, 0.2) 100%);
-            backdrop-filter: blur(10px);
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             display: inline-block;
             color: #00ffff;
             font-weight: 600;
-            font-size: 1.1rem;
             border: 1px solid rgba(0, 255, 255, 0.3);
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .go-today {
@@ -224,19 +291,13 @@
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
             color: #00ffff;
-            backdrop-filter: blur(5px);
         }
 
         .go-today:hover {
             background: rgba(0, 255, 255, 0.2);
-            border-color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
         }
 
-        /* Selector de mes futurista */
         .month-selector {
             display: flex;
             gap: 0.5rem;
@@ -251,15 +312,12 @@
             padding: 0.5rem 1rem;
             border-radius: 2rem;
             cursor: pointer;
-            font-size: 0.9rem;
             color: #8b8bff;
             transition: all 0.3s;
-            backdrop-filter: blur(5px);
         }
 
         .month-btn:hover {
             background: rgba(0, 255, 255, 0.2);
-            border-color: #00ffff;
             color: #00ffff;
         }
 
@@ -267,10 +325,8 @@
             background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
             border-color: #00ffff;
             color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
 
-        /* Grid de días futurista */
         .days-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -278,31 +334,14 @@
             margin-bottom: 2rem;
         }
 
-        /* Tarjeta de día futurista */
         .day-card {
             background: rgba(10, 10, 20, 0.6);
             backdrop-filter: blur(10px);
             border-radius: 1.5rem;
             overflow: hidden;
             border: 1px solid rgba(0, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             cursor: pointer;
-            position: relative;
-        }
-
-        .day-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .day-card:hover::before {
-            left: 100%;
         }
 
         .day-card:hover {
@@ -316,7 +355,6 @@
             padding: 1rem;
             border-bottom: 1px solid rgba(0, 255, 255, 0.2);
             font-weight: 600;
-            font-size: 1.1rem;
             color: #00ffff;
         }
 
@@ -325,9 +363,6 @@
             min-height: 120px;
             color: #c0c0ff;
             font-size: 0.9rem;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            word-break: break-word;
         }
 
         .empty-preview {
@@ -335,7 +370,6 @@
             font-style: italic;
         }
 
-        /* Modal futurista */
         .modal {
             display: none;
             position: fixed;
@@ -364,7 +398,6 @@
             max-height: 90vh;
             overflow-y: auto;
             border: 1px solid rgba(0, 255, 255, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 255, 255, 0.1);
         }
 
         .modal-header {
@@ -373,16 +406,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            background: rgba(5, 5, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 2rem 2rem 0 0;
         }
 
         .modal-header h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
             background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -396,21 +422,13 @@
             height: 36px;
             border-radius: 1rem;
             cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s;
             color: #00ffff;
-        }
-
-        .close-modal:hover {
-            background: rgba(0, 255, 255, 0.3);
-            transform: rotate(90deg);
         }
 
         .modal-body {
             padding: 1.5rem;
         }
 
-        /* Áreas de notas estilo cyber */
         .note-section {
             margin-bottom: 2rem;
         }
@@ -422,7 +440,6 @@
             font-weight: 600;
             color: #00ffff;
             margin-bottom: 0.75rem;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         textarea, input {
@@ -433,8 +450,6 @@
             border-radius: 1rem;
             font-family: inherit;
             font-size: 0.95rem;
-            transition: all 0.3s;
-            resize: vertical;
             color: #e8e8ff;
         }
 
@@ -442,11 +457,6 @@
             outline: none;
             border-color: #00ffff;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        textarea::placeholder, input::placeholder {
-            color: rgba(0, 255, 255, 0.3);
         }
 
         .todo-list {
@@ -461,26 +471,12 @@
             background: rgba(0, 255, 255, 0.05);
             border-radius: 0.75rem;
             margin-bottom: 0.5rem;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-
-        .todo-item:hover {
-            border-color: rgba(0, 255, 255, 0.3);
-            background: rgba(0, 255, 255, 0.1);
         }
 
         .todo-item input[type="checkbox"] {
             width: auto;
-            margin: 0;
             transform: scale(1.2);
             accent-color: #00ffff;
-        }
-
-        .todo-item span {
-            flex: 1;
-            font-size: 0.95rem;
-            color: #c0c0ff;
         }
 
         .todo-item.completed span {
@@ -494,11 +490,6 @@
             margin-top: 0.75rem;
         }
 
-        .add-todo input {
-            flex: 1;
-            padding: 0.75rem;
-        }
-
         .btn-primary {
             background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
             color: #00ffff;
@@ -507,15 +498,10 @@
             border-radius: 1rem;
             cursor: pointer;
             font-weight: 500;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .btn-primary:hover {
             background: linear-gradient(135deg, #00ffff40 0%, #ff00ff40 100%);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            transform: scale(1.02);
         }
 
         .btn-secondary {
@@ -524,15 +510,7 @@
             padding: 0.75rem 1.5rem;
             border-radius: 1rem;
             cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s;
             color: #8b8bff;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(0, 255, 255, 0.1);
-            border-color: #00ffff;
-            color: #00ffff;
         }
 
         .modal-actions {
@@ -544,67 +522,24 @@
             border-top: 1px solid rgba(0, 255, 255, 0.2);
         }
 
-        /* Estadísticas futuristas */
         .stats {
             background: rgba(10, 10, 20, 0.6);
-            backdrop-filter: blur(10px);
             border-radius: 1.5rem;
             padding: 1rem 1.5rem;
             margin-top: 2rem;
             text-align: center;
             color: #8b8bff;
-            font-size: 0.9rem;
             border: 1px solid rgba(0, 255, 255, 0.2);
-            letter-spacing: 0.5px;
         }
 
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #00ffff;
-        }
-
-        /* Scrollbar personalizada */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00ffff, #ff00ff);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #ff00ff, #00ffff);
+        .hidden {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-            
-            .day-controls {
-                flex-direction: column;
-            }
-            
-            .days-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .auth-forms {
-                flex-direction: column;
-                align-items: center;
-            }
+            body { padding: 1rem; }
+            .days-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -615,29 +550,51 @@
             <p>CUADERNO DIGITAL · AGENDA FUTURISTA · SISTEMA NEXUS</p>
         </div>
 
-        <!-- Sección de Autenticación -->
-        <div class="auth-section" id="authSection">
-            <div id="unauthenticatedView">
-                <div class="auth-forms">
-                    <input type="email" id="loginEmail" placeholder="Email" class="auth-input">
-                    <input type="password" id="loginPassword" placeholder="Contraseña" class="auth-input">
-                    <button class="auth-btn" id="loginBtn">🔓 INICIAR SESIÓN</button>
+        <!-- Pantalla de Autenticación -->
+        <div id="authScreen" class="auth-container">
+            <div class="auth-card">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="loginTab">🔐 INICIAR SESIÓN</button>
+                    <button class="auth-tab" id="registerTab">✨ REGISTRARSE</button>
                 </div>
-                <div class="auth-forms" style="margin-top: 1rem;">
-                    <input type="email" id="registerEmail" placeholder="Email" class="auth-input">
-                    <input type="password" id="registerPassword" placeholder="Contraseña" class="auth-input">
-                    <button class="auth-btn" id="registerBtn">✨ REGISTRARSE</button>
+
+                <!-- Formulario de Login -->
+                <div id="loginForm" class="auth-form">
+                    <div class="input-group">
+                        <label>📧 EMAIL</label>
+                        <input type="email" id="loginEmail" placeholder="tu@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label>🔒 CONTRASEÑA</label>
+                        <input type="password" id="loginPassword" placeholder="••••••••">
+                    </div>
+                    <button class="auth-button" id="doLoginBtn">INICIAR SESIÓN</button>
                 </div>
-            </div>
-            <div id="authenticatedView" style="display: none;">
-                <div class="user-info">
-                    <span class="user-email" id="userEmailDisplay"></span>
-                    <button class="logout-btn" id="logoutBtn">🔒 CERRAR SESIÓN</button>
+
+                <!-- Formulario de Registro -->
+                <div id="registerForm" class="auth-form hidden">
+                    <div class="input-group">
+                        <label>📧 EMAIL</label>
+                        <input type="email" id="registerEmail" placeholder="tu@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label>🔒 CONTRASEÑA</label>
+                        <input type="password" id="registerPassword" placeholder="mínimo 6 caracteres">
+                    </div>
+                    <button class="auth-button" id="doRegisterBtn">CREAR CUENTA</button>
                 </div>
+
+                <div id="authMessage" class="message" style="display: none;"></div>
             </div>
         </div>
 
-        <div id="mainContent" style="display: none;">
+        <!-- Pantalla Principal (después de login) -->
+        <div id="mainScreen" class="hidden">
+            <div class="user-bar">
+                <span class="user-email" id="userEmailDisplay"></span>
+                <button class="logout-btn" id="logoutBtn">🔒 CERRAR SESIÓN</button>
+            </div>
+
             <div class="day-navigator">
                 <div class="day-controls">
                     <div class="nav-buttons">
@@ -652,13 +609,8 @@
                 <div class="month-selector" id="monthSelector"></div>
             </div>
 
-            <div id="daysGrid" class="days-grid">
-                <div class="loading">🌀 CARGANDO DATOS NEXUS...</div>
-            </div>
-
-            <div class="stats" id="stats">
-                <span>🌀 INICIALIZANDO SISTEMA NEXUS...</span>
-            </div>
+            <div id="daysGrid" class="days-grid"></div>
+            <div class="stats" id="stats">🌀 INICIALIZANDO SISTEMA NEXUS...</div>
         </div>
     </div>
 
@@ -672,18 +624,16 @@
             <div class="modal-body">
                 <div class="note-section">
                     <div class="section-title">📝 NOTAS NEXUS</div>
-                    <textarea id="notesContent" rows="4" placeholder="Registra tus ideas, reflexiones y datos importantes..."></textarea>
+                    <textarea id="notesContent" rows="4" placeholder="Escribe tus notas aquí..."></textarea>
                 </div>
-
                 <div class="note-section">
-                    <div class="section-title">✅ SISTEMA DE TAREAS</div>
+                    <div class="section-title">✅ LISTA DE TAREAS</div>
                     <div id="todoListContainer" class="todo-list"></div>
                     <div class="add-todo">
                         <input type="text" id="newTodoInput" placeholder="Nueva tarea...">
                         <button class="btn-primary" id="addTodoBtn">+ AÑADIR</button>
                     </div>
                 </div>
-
                 <div class="modal-actions">
                     <button class="btn-secondary" id="cancelModal">CANCELAR</button>
                     <button class="btn-primary" id="saveDayBtn">GUARDAR</button>
@@ -694,125 +644,146 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // ==================================================
-        // CONFIGURACIÓN DE SUPABASE (TUS CREDENCIALES)
-        // ==================================================
+        // Configuración de Supabase
         const SUPABASE_URL = 'https://kayboraysiwqqzujcadh.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_QDTcuZmeQ2-ns8uHkTPjw_CM8PC_';
-
-        // Inicializar Supabase
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // Variables globales
+        // Variables
         let currentUser = null;
         let notebookData = {};
         let currentDate = new Date();
         let currentEditingDate = null;
 
-        // ==================================================
-        // FUNCIONES DE AUTENTICACIÓN
-        // ==================================================
-        
-        async function checkSession() {
-            const { data: { session }, error } = await supabase.auth.getSession();
-            if (session) {
-                currentUser = session.user;
-                showAuthenticatedView();
-                loadAllUserData();
-            } else {
-                showUnauthenticatedView();
-            }
+        // Elementos DOM
+        const authScreen = document.getElementById('authScreen');
+        const mainScreen = document.getElementById('mainScreen');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const authMessage = document.getElementById('authMessage');
+
+        // Mostrar mensaje
+        function showMessage(text, type) {
+            authMessage.textContent = text;
+            authMessage.className = `message ${type}`;
+            authMessage.style.display = 'block';
+            setTimeout(() => {
+                authMessage.style.display = 'none';
+            }, 3000);
         }
 
-        async function login() {
-            const email = document.getElementById('loginEmail').value;
+        // Cambiar entre login y registro
+        document.getElementById('loginTab').addEventListener('click', () => {
+            document.getElementById('loginTab').classList.add('active');
+            document.getElementById('registerTab').classList.remove('active');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            authMessage.style.display = 'none';
+        });
+
+        document.getElementById('registerTab').addEventListener('click', () => {
+            document.getElementById('registerTab').classList.add('active');
+            document.getElementById('loginTab').classList.remove('active');
+            registerForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+            authMessage.style.display = 'none';
+        });
+
+        // Login
+        async function doLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
-            
+
             if (!email || !password) {
-                alert('⚠️ Ingresa email y contraseña');
+                showMessage('⚠️ Completa todos los campos', 'error');
                 return;
             }
-            
+
             const { data, error } = await supabase.auth.signInWithPassword({
                 email: email,
                 password: password
             });
-            
+
             if (error) {
-                alert('❌ Error: ' + error.message);
+                showMessage('❌ Error: ' + error.message, 'error');
             } else {
+                showMessage('✅ ¡Bienvenido/a ' + email + '!', 'success');
                 currentUser = data.user;
-                showAuthenticatedView();
-                loadAllUserData();
+                showMainScreen();
+                await loadAllUserData();
             }
         }
 
-        async function register() {
-            const email = document.getElementById('registerEmail').value;
+        // Registro
+        async function doRegister() {
+            const email = document.getElementById('registerEmail').value.trim();
             const password = document.getElementById('registerPassword').value;
-            
+
             if (!email || !password) {
-                alert('⚠️ Ingresa email y contraseña');
+                showMessage('⚠️ Completa todos los campos', 'error');
                 return;
             }
-            
+
             if (password.length < 6) {
-                alert('⚠️ La contraseña debe tener al menos 6 caracteres');
+                showMessage('⚠️ La contraseña debe tener al menos 6 caracteres', 'error');
                 return;
             }
-            
+
             const { data, error } = await supabase.auth.signUp({
                 email: email,
                 password: password
             });
-            
+
             if (error) {
-                alert('❌ Error: ' + error.message);
+                showMessage('❌ Error: ' + error.message, 'error');
             } else {
-                alert('✅ Registro exitoso! Ahora inicia sesión.');
-                document.getElementById('registerEmail').value = '';
-                document.getElementById('registerPassword').value = '';
+                showMessage('✅ ¡Registro exitoso! Ahora inicia sesión.', 'success');
+                // Cambiar a login
+                document.getElementById('loginTab').click();
+                document.getElementById('loginEmail').value = email;
+                document.getElementById('loginPassword').value = '';
             }
         }
 
-        async function logout() {
+        // Logout
+        async function doLogout() {
             await supabase.auth.signOut();
             currentUser = null;
-            showUnauthenticatedView();
-            notebookData = {};
+            showAuthScreen();
         }
 
-        function showAuthenticatedView() {
-            document.getElementById('unauthenticatedView').style.display = 'none';
-            document.getElementById('authenticatedView').style.display = 'block';
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('userEmailDisplay').textContent = currentUser.email;
+        // Mostrar pantalla principal
+        function showMainScreen() {
+            authScreen.classList.add('hidden');
+            mainScreen.classList.remove('hidden');
+            document.getElementById('userEmailDisplay').textContent = currentUser?.email || '';
         }
 
-        function showUnauthenticatedView() {
-            document.getElementById('unauthenticatedView').style.display = 'block';
-            document.getElementById('authenticatedView').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'none';
+        // Mostrar pantalla de autenticación
+        function showAuthScreen() {
+            authScreen.classList.remove('hidden');
+            mainScreen.classList.add('hidden');
+            // Limpiar formularios
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('registerEmail').value = '';
+            document.getElementById('registerPassword').value = '';
         }
 
-        // ==================================================
-        // FUNCIONES DE DATOS (SUPABASE)
-        // ==================================================
-
+        // Cargar datos del usuario
         async function loadAllUserData() {
             if (!currentUser) return;
-            
+
             const { data, error } = await supabase
                 .from('notebook_entries')
                 .select('*')
                 .eq('user_id', currentUser.id);
-            
+
             if (error) {
-                console.error('Error cargando datos:', error);
+                console.error('Error:', error);
                 return;
             }
-            
-            // Convertir a objeto con fecha como clave
+
             notebookData = {};
             if (data) {
                 data.forEach(entry => {
@@ -823,92 +794,46 @@
                     };
                 });
             }
-            
+
             renderCurrentView();
             updateStats();
         }
 
+        // Guardar datos
         async function saveDayData(dateStr, notes, todos) {
             if (!currentUser) return;
-            
+
             const existingEntry = notebookData[dateStr];
             const todoData = todos.map(t => ({ id: t.id, text: t.text, completed: t.completed }));
-            
+
             if (existingEntry && existingEntry.id) {
-                // Actualizar entrada existente
                 const { error } = await supabase
                     .from('notebook_entries')
-                    .update({
-                        notes: notes,
-                        todos: todoData,
-                        updated_at: new Date()
-                    })
-                    .eq('id', existingEntry.id)
-                    .eq('user_id', currentUser.id);
-                
+                    .update({ notes: notes, todos: todoData })
+                    .eq('id', existingEntry.id);
+
                 if (error) {
-                    console.error('Error actualizando:', error);
-                    alert('❌ Error al guardar: ' + error.message);
+                    showMessage('❌ Error al guardar', 'error');
                     return false;
                 }
             } else {
-                // Crear nueva entrada
                 const { error } = await supabase
                     .from('notebook_entries')
-                    .insert({
-                        user_id: currentUser.id,
-                        date: dateStr,
-                        notes: notes,
-                        todos: todoData
-                    });
-                
+                    .insert({ user_id: currentUser.id, date: dateStr, notes: notes, todos: todoData });
+
                 if (error) {
-                    console.error('Error insertando:', error);
-                    alert('❌ Error al guardar: ' + error.message);
+                    showMessage('❌ Error al guardar', 'error');
                     return false;
                 }
             }
-            
-            // Actualizar cache local
-            notebookData[dateStr] = {
-                notes: notes,
-                todos: todos,
-                id: existingEntry?.id
-            };
-            
+
+            notebookData[dateStr] = { notes: notes, todos: todos, id: existingEntry?.id };
             return true;
         }
 
-        async function deleteDayData(dateStr) {
-            if (!currentUser) return;
-            
-            const entry = notebookData[dateStr];
-            if (entry && entry.id) {
-                const { error } = await supabase
-                    .from('notebook_entries')
-                    .delete()
-                    .eq('id', entry.id)
-                    .eq('user_id', currentUser.id);
-                
-                if (error) {
-                    console.error('Error eliminando:', error);
-                    return false;
-                }
-            }
-            
-            delete notebookData[dateStr];
-            return true;
-        }
-
-        // ==================================================
-        // FUNCIONES DE UI
-        // ==================================================
-
+        // Obtener datos de un día
         function getDayData(dateStr) {
-            if (!notebookData[dateStr]) {
-                return { notes: "", todos: [] };
-            }
-            return notebookData[dateStr];
+            return notebookData[dateStr] || { notes: "", todos: [] };
         }
 
         function formatDate(date) {
@@ -922,111 +847,76 @@
 
         async function renderCurrentView() {
             if (!currentUser) return;
-            
+
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
-            
             const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            
-            const daysInMonth = lastDay.getDate();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
             const startWeekday = firstDay.getDay();
-            
+
             const days = [];
-            
-            // Días del mes anterior
             const prevMonthLastDay = new Date(year, month, 0).getDate();
             for (let i = startWeekday - 1; i >= 0; i--) {
-                const dayNum = prevMonthLastDay - i;
-                const date = new Date(year, month - 1, dayNum);
-                days.push({ date, isCurrentMonth: false });
+                days.push({ date: new Date(year, month - 1, prevMonthLastDay - i), isCurrentMonth: false });
             }
-            
-            // Días del mes actual
             for (let i = 1; i <= daysInMonth; i++) {
-                const date = new Date(year, month, i);
-                days.push({ date, isCurrentMonth: true });
+                days.push({ date: new Date(year, month, i), isCurrentMonth: true });
             }
-            
-            // Días del mes siguiente
             const remaining = 42 - days.length;
             for (let i = 1; i <= remaining; i++) {
-                const date = new Date(year, month + 1, i);
-                days.push({ date, isCurrentMonth: false });
+                days.push({ date: new Date(year, month + 1, i), isCurrentMonth: false });
             }
-            
+
             const monthNames = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
             document.getElementById('currentMonthYear').textContent = `${monthNames[month]} ${year}`;
-            
+
             const grid = document.getElementById('daysGrid');
             grid.innerHTML = days.map(day => {
                 const dateStr = formatDate(day.date);
                 const dayData = notebookData[dateStr] || { notes: "", todos: [] };
                 const preview = dayData.notes ? dayData.notes.substring(0, 80) : (dayData.todos.length > 0 ? `📋 ${dayData.todos.length} tareas` : "⚡ SIN DATOS");
                 const hasContent = dayData.notes || dayData.todos.length > 0;
-                
                 return `
                     <div class="day-card" data-date="${dateStr}">
-                        <div class="day-card-header">
-                            ${getDayName(day.date)} · ${day.date.getDate()}
-                            ${!day.isCurrentMonth ? '<span style="opacity:0.4; font-size:0.7rem;"> [OFFLINE]</span>' : ''}
-                        </div>
-                        <div class="day-card-preview">
-                            ${hasContent ? preview : '<span class="empty-preview">🌀 NEXUS VACÍO · ACTIVAR</span>'}
-                        </div>
+                        <div class="day-card-header">${getDayName(day.date)} · ${day.date.getDate()}</div>
+                        <div class="day-card-preview">${hasContent ? preview : '<span class="empty-preview">🌀 NEXUS VACÍO · ACTIVAR</span>'}</div>
                     </div>
                 `;
             }).join('');
-            
+
             document.querySelectorAll('.day-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const date = card.dataset.date;
-                    openModal(date);
-                });
+                card.addEventListener('click', () => openModal(card.dataset.date));
             });
-            
-            updateMonthSelector();
-        }
-        
-        function updateMonthSelector() {
-            const container = document.getElementById('monthSelector');
+
+            // Actualizar selector de meses
             const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
-            const currentMonth = currentDate.getMonth();
-            
-            container.innerHTML = months.map((month, idx) => {
-                const isActive = idx === currentMonth;
-                return `<button class="month-btn ${isActive ? 'active' : ''}" data-month="${idx}">${month}</button>`;
-            }).join('');
-            
+            document.getElementById('monthSelector').innerHTML = months.map((m, idx) => 
+                `<button class="month-btn ${idx === month ? 'active' : ''}" data-month="${idx}">${m}</button>`
+            ).join('');
             document.querySelectorAll('.month-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    const month = parseInt(e.target.dataset.month);
-                    currentDate.setMonth(month);
+                    currentDate.setMonth(parseInt(e.target.dataset.month));
                     renderCurrentView();
                 });
             });
         }
-        
+
         async function openModal(dateStr) {
             currentEditingDate = dateStr;
             const date = new Date(dateStr);
             const dayData = getDayData(dateStr);
-            
             document.getElementById('modalDateTitle').textContent = `${getDayName(date)} ${date.getDate()} · ${date.toLocaleString('es', { month: 'long' }).toUpperCase()} ${date.getFullYear()}`;
             document.getElementById('notesContent').value = dayData.notes || '';
-            
             renderTodoList(dayData.todos || []);
-            
             document.getElementById('dayModal').classList.add('active');
         }
-        
+
         function renderTodoList(todos) {
             const container = document.getElementById('todoListContainer');
-            if (!todos || todos.length === 0) {
-                container.innerHTML = '<p style="color:rgba(0, 255, 255, 0.4); text-align:center; padding:1rem;">⚡ SIN TAREAS · AÑADIR MÓDULOS</p>';
+            if (!todos.length) {
+                container.innerHTML = '<p style="color:rgba(0,255,255,0.4); text-align:center;">⚡ SIN TAREAS</p>';
                 return;
             }
-            
             container.innerHTML = todos.map(todo => `
                 <div class="todo-item ${todo.completed ? 'completed' : ''}" data-id="${todo.id}">
                     <input type="checkbox" ${todo.completed ? 'checked' : ''} class="todo-checkbox">
@@ -1034,144 +924,95 @@
                     <button class="delete-todo" style="background:none; border:none; cursor:pointer; color:#ff00ff;">🗑️</button>
                 </div>
             `).join('');
-            
-            document.querySelectorAll('.todo-checkbox').forEach((checkbox, idx) => {
-                checkbox.addEventListener('change', async () => {
-                    const todoId = todos[idx].id;
+
+            document.querySelectorAll('.todo-checkbox').forEach((cb, i) => {
+                cb.addEventListener('change', async () => {
                     const dayData = getDayData(currentEditingDate);
-                    const todo = dayData.todos.find(t => t.id === todoId);
-                    if (todo) {
-                        todo.completed = checkbox.checked;
-                        await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
-                        renderTodoList(dayData.todos);
-                    }
+                    dayData.todos[i].completed = cb.checked;
+                    await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
+                    renderTodoList(dayData.todos);
                 });
             });
-            
-            document.querySelectorAll('.delete-todo').forEach((btn, idx) => {
+            document.querySelectorAll('.delete-todo').forEach((btn, i) => {
                 btn.addEventListener('click', async () => {
-                    const todoId = todos[idx].id;
                     const dayData = getDayData(currentEditingDate);
-                    dayData.todos = dayData.todos.filter(t => t.id !== todoId);
+                    dayData.todos.splice(i, 1);
                     await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
                     renderTodoList(dayData.todos);
                 });
             });
         }
-        
+
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
-        
+
         async function saveCurrentDay() {
             if (!currentEditingDate) return;
-            
             const notes = document.getElementById('notesContent').value;
             const dayData = getDayData(currentEditingDate);
-            const todos = dayData.todos || [];
-            
-            const success = await saveDayData(currentEditingDate, notes, todos);
-            
-            if (success) {
-                closeModal();
-                renderCurrentView();
-                updateStats();
-            }
+            await saveDayData(currentEditingDate, notes, dayData.todos || []);
+            closeModal();
+            renderCurrentView();
+            updateStats();
         }
-        
+
         function closeModal() {
             document.getElementById('dayModal').classList.remove('active');
             currentEditingDate = null;
         }
-        
+
         async function updateStats() {
-            if (!currentUser) return;
-            
             const totalDays = Object.keys(notebookData).length;
-            let totalNotes = 0;
-            let totalTodos = 0;
-            
+            let totalNotes = 0, totalTodos = 0;
             Object.values(notebookData).forEach(day => {
-                if (day.notes && day.notes.trim()) totalNotes++;
+                if (day.notes?.trim()) totalNotes++;
                 if (day.todos) totalTodos += day.todos.length;
             });
-            
-            document.getElementById('stats').innerHTML = `
-                <span>🌀 NEXUS STATS · ${totalDays} DÍAS ACTIVOS · ${totalNotes} REGISTROS · ${totalTodos} TAREAS</span>
-                <br><span style="font-size:0.8rem;">💾 DATOS SINCRONIZADOS · SUPABASE CLOUD</span>
-            `;
+            document.getElementById('stats').innerHTML = `🌀 NEXUS STATS · ${totalDays} DÍAS · ${totalNotes} NOTAS · ${totalTodos} TAREAS<br>💾 DATOS SINCRONIZADOS · SUPABASE CLOUD`;
         }
 
-        // ==================================================
-        // EVENT LISTENERS
-        // ==================================================
-        
-        document.getElementById('prevMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCurrentView();
-        });
-        
-        document.getElementById('nextMonth').addEventListener('click', () => {
-            currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCurrentView();
-        });
-        
-        document.getElementById('goToday').addEventListener('click', () => {
-            currentDate = new Date();
-            renderCurrentView();
-        });
-        
+        // Event listeners
+        document.getElementById('doLoginBtn').addEventListener('click', doLogin);
+        document.getElementById('doRegisterBtn').addEventListener('click', doRegister);
+        document.getElementById('logoutBtn').addEventListener('click', doLogout);
+        document.getElementById('prevMonth').addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() - 1); renderCurrentView(); });
+        document.getElementById('nextMonth').addEventListener('click', () => { currentDate.setMonth(currentDate.getMonth() + 1); renderCurrentView(); });
+        document.getElementById('goToday').addEventListener('click', () => { currentDate = new Date(); renderCurrentView(); });
         document.getElementById('saveDayBtn').addEventListener('click', saveCurrentDay);
         document.getElementById('closeModal').addEventListener('click', closeModal);
         document.getElementById('cancelModal').addEventListener('click', closeModal);
-        
         document.getElementById('addTodoBtn').addEventListener('click', async () => {
             const input = document.getElementById('newTodoInput');
             const text = input.value.trim();
             if (text && currentEditingDate) {
                 const dayData = getDayData(currentEditingDate);
-                if (!dayData.todos) dayData.todos = [];
-                dayData.todos.push({
-                    id: Date.now(),
-                    text: text,
-                    completed: false
-                });
+                dayData.todos.push({ id: Date.now(), text: text, completed: false });
                 await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
                 renderTodoList(dayData.todos);
                 input.value = '';
             }
         });
-        
-        document.getElementById('loginBtn').addEventListener('click', login);
-        document.getElementById('registerBtn').addEventListener('click', register);
-        document.getElementById('logoutBtn').addEventListener('click', logout);
-        
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && document.getElementById('dayModal').classList.contains('active')) {
-                closeModal();
-            }
+            if (e.key === 'Escape') closeModal();
         });
-        
-        // ==================================================
-        // INICIALIZACIÓN
-        // ==================================================
-        
-        checkSession();
-        
-        // Escuchar cambios de autenticación
-        supabase.auth.onAuthStateChange((event, session) => {
+
+        // Verificar sesión al cargar
+        async function checkSession() {
+            const { data: { session } } = await supabase.auth.getSession();
             if (session) {
                 currentUser = session.user;
-                showAuthenticatedView();
-                loadAllUserData();
+                showMainScreen();
+                await loadAllUserData();
             } else {
-                currentUser = null;
-                showUnauthenticatedView();
-                notebookData = {};
+                showAuthScreen();
             }
-        });
+        }
+
+        checkSession();
     </script>
 </body>
 </html>
