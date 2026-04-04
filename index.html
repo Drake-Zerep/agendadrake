@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Cuaderno Digital Nexus - Futurista</title>
+    <title>NEXUS NOTE - Cuaderno Digital Futurista</title>
     <style>
         * {
             margin: 0;
@@ -76,6 +76,84 @@
             font-size: 0.9rem;
             text-transform: uppercase;
             backdrop-filter: blur(10px);
+        }
+
+        /* Sección de autenticación */
+        .auth-section {
+            background: rgba(10, 10, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-email {
+            color: #00ffff;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .logout-btn {
+            background: rgba(255, 0, 255, 0.2);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            color: #ff00ff;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+        }
+
+        .auth-forms {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .auth-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            color: #e8e8ff;
+            width: 250px;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .auth-btn {
+            background: linear-gradient(135deg, #00ffff20 0%, #ff00ff20 100%);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+            padding: 0.75rem 1.5rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            color: #00ffff;
+            transition: all 0.3s;
+        }
+
+        .auth-btn:hover {
+            background: linear-gradient(135deg, #00ffff40 0%, #ff00ff40 100%);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
 
         /* Navegador futurista */
@@ -480,6 +558,12 @@
             letter-spacing: 0.5px;
         }
 
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #00ffff;
+        }
+
         /* Scrollbar personalizada */
         ::-webkit-scrollbar {
             width: 8px;
@@ -516,20 +600,11 @@
             .header h1 {
                 font-size: 2rem;
             }
-        }
 
-        /* Efecto de brillo en elementos activos */
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
+            .auth-forms {
+                flex-direction: column;
+                align-items: center;
             }
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .date-card, .month-btn.active {
-            animation: pulse 2s ease-in-out infinite;
         }
     </style>
 </head>
@@ -540,24 +615,50 @@
             <p>CUADERNO DIGITAL · AGENDA FUTURISTA · SISTEMA NEXUS</p>
         </div>
 
-        <div class="day-navigator">
-            <div class="day-controls">
-                <div class="nav-buttons">
-                    <button class="nav-btn" id="prevMonth">←</button>
-                    <button class="nav-btn" id="nextMonth">→</button>
+        <!-- Sección de Autenticación -->
+        <div class="auth-section" id="authSection">
+            <div id="unauthenticatedView">
+                <div class="auth-forms">
+                    <input type="email" id="loginEmail" placeholder="Email" class="auth-input">
+                    <input type="password" id="loginPassword" placeholder="Contraseña" class="auth-input">
+                    <button class="auth-btn" id="loginBtn">🔓 INICIAR SESIÓN</button>
                 </div>
-                <div class="date-display">
-                    <div class="date-card" id="currentMonthYear">Enero 2024</div>
+                <div class="auth-forms" style="margin-top: 1rem;">
+                    <input type="email" id="registerEmail" placeholder="Email" class="auth-input">
+                    <input type="password" id="registerPassword" placeholder="Contraseña" class="auth-input">
+                    <button class="auth-btn" id="registerBtn">✨ REGISTRARSE</button>
                 </div>
-                <button class="go-today" id="goToday">📅 HOY</button>
             </div>
-            <div class="month-selector" id="monthSelector"></div>
+            <div id="authenticatedView" style="display: none;">
+                <div class="user-info">
+                    <span class="user-email" id="userEmailDisplay"></span>
+                    <button class="logout-btn" id="logoutBtn">🔒 CERRAR SESIÓN</button>
+                </div>
+            </div>
         </div>
 
-        <div id="daysGrid" class="days-grid"></div>
+        <div id="mainContent" style="display: none;">
+            <div class="day-navigator">
+                <div class="day-controls">
+                    <div class="nav-buttons">
+                        <button class="nav-btn" id="prevMonth">←</button>
+                        <button class="nav-btn" id="nextMonth">→</button>
+                    </div>
+                    <div class="date-display">
+                        <div class="date-card" id="currentMonthYear">Enero 2024</div>
+                    </div>
+                    <button class="go-today" id="goToday">📅 HOY</button>
+                </div>
+                <div class="month-selector" id="monthSelector"></div>
+            </div>
 
-        <div class="stats" id="stats">
-            <span>🌀 INICIALIZANDO SISTEMA NEXUS...</span>
+            <div id="daysGrid" class="days-grid">
+                <div class="loading">🌀 CARGANDO DATOS NEXUS...</div>
+            </div>
+
+            <div class="stats" id="stats">
+                <span>🌀 INICIALIZANDO SISTEMA NEXUS...</span>
+            </div>
         </div>
     </div>
 
@@ -591,62 +692,237 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Almacenamiento de datos
+        // ==================================================
+        // CONFIGURACIÓN DE SUPABASE (TUS CREDENCIALES)
+        // ==================================================
+        const SUPABASE_URL = 'https://kayboraysiwqqzujcadh.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_QDTcuZmeQ2-ns8uHkTPjw_CM8PC_';
+
+        // Inicializar Supabase
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Variables globales
+        let currentUser = null;
         let notebookData = {};
         let currentDate = new Date();
         let currentEditingDate = null;
 
-        // Cargar datos guardados
-        function loadData() {
-            const saved = localStorage.getItem('nexusNotebook');
-            if (saved) {
-                notebookData = JSON.parse(saved);
+        // ==================================================
+        // FUNCIONES DE AUTENTICACIÓN
+        // ==================================================
+        
+        async function checkSession() {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (session) {
+                currentUser = session.user;
+                showAuthenticatedView();
+                loadAllUserData();
             } else {
-                // Datos de ejemplo futuristas
-                const today = new Date().toISOString().split('T')[0];
-                notebookData[today] = {
-                    notes: "⚡ BIENVENIDO AL SISTEMA NEXUS ⚡\n\nEste es tu cuaderno digital de próxima generación. Registra tus ideas, proyectos y tareas con estilo futurista.\n\n\"El futuro pertenece a quienes organizan su presente con visión.\"",
-                    todos: [
-                        { id: Date.now(), text: "Explorar interfaz Nexus", completed: false },
-                        { id: Date.now() + 1, text: "Registrar primeras notas", completed: false },
-                        { id: Date.now() + 2, text: "Configurar objetivos diarios", completed: false }
-                    ]
-                };
+                showUnauthenticatedView();
             }
         }
 
-        // Guardar datos
-        function saveData() {
-            localStorage.setItem('nexusNotebook', JSON.stringify(notebookData));
+        async function login() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!email || !password) {
+                alert('⚠️ Ingresa email y contraseña');
+                return;
+            }
+            
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+            
+            if (error) {
+                alert('❌ Error: ' + error.message);
+            } else {
+                currentUser = data.user;
+                showAuthenticatedView();
+                loadAllUserData();
+            }
+        }
+
+        async function register() {
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            if (!email || !password) {
+                alert('⚠️ Ingresa email y contraseña');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('⚠️ La contraseña debe tener al menos 6 caracteres');
+                return;
+            }
+            
+            const { data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password
+            });
+            
+            if (error) {
+                alert('❌ Error: ' + error.message);
+            } else {
+                alert('✅ Registro exitoso! Ahora inicia sesión.');
+                document.getElementById('registerEmail').value = '';
+                document.getElementById('registerPassword').value = '';
+            }
+        }
+
+        async function logout() {
+            await supabase.auth.signOut();
+            currentUser = null;
+            showUnauthenticatedView();
+            notebookData = {};
+        }
+
+        function showAuthenticatedView() {
+            document.getElementById('unauthenticatedView').style.display = 'none';
+            document.getElementById('authenticatedView').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('userEmailDisplay').textContent = currentUser.email;
+        }
+
+        function showUnauthenticatedView() {
+            document.getElementById('unauthenticatedView').style.display = 'block';
+            document.getElementById('authenticatedView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'none';
+        }
+
+        // ==================================================
+        // FUNCIONES DE DATOS (SUPABASE)
+        // ==================================================
+
+        async function loadAllUserData() {
+            if (!currentUser) return;
+            
+            const { data, error } = await supabase
+                .from('notebook_entries')
+                .select('*')
+                .eq('user_id', currentUser.id);
+            
+            if (error) {
+                console.error('Error cargando datos:', error);
+                return;
+            }
+            
+            // Convertir a objeto con fecha como clave
+            notebookData = {};
+            if (data) {
+                data.forEach(entry => {
+                    notebookData[entry.date] = {
+                        notes: entry.notes || '',
+                        todos: entry.todos || [],
+                        id: entry.id
+                    };
+                });
+            }
+            
             renderCurrentView();
             updateStats();
         }
 
-        // Obtener datos de un día específico
+        async function saveDayData(dateStr, notes, todos) {
+            if (!currentUser) return;
+            
+            const existingEntry = notebookData[dateStr];
+            const todoData = todos.map(t => ({ id: t.id, text: t.text, completed: t.completed }));
+            
+            if (existingEntry && existingEntry.id) {
+                // Actualizar entrada existente
+                const { error } = await supabase
+                    .from('notebook_entries')
+                    .update({
+                        notes: notes,
+                        todos: todoData,
+                        updated_at: new Date()
+                    })
+                    .eq('id', existingEntry.id)
+                    .eq('user_id', currentUser.id);
+                
+                if (error) {
+                    console.error('Error actualizando:', error);
+                    alert('❌ Error al guardar: ' + error.message);
+                    return false;
+                }
+            } else {
+                // Crear nueva entrada
+                const { error } = await supabase
+                    .from('notebook_entries')
+                    .insert({
+                        user_id: currentUser.id,
+                        date: dateStr,
+                        notes: notes,
+                        todos: todoData
+                    });
+                
+                if (error) {
+                    console.error('Error insertando:', error);
+                    alert('❌ Error al guardar: ' + error.message);
+                    return false;
+                }
+            }
+            
+            // Actualizar cache local
+            notebookData[dateStr] = {
+                notes: notes,
+                todos: todos,
+                id: existingEntry?.id
+            };
+            
+            return true;
+        }
+
+        async function deleteDayData(dateStr) {
+            if (!currentUser) return;
+            
+            const entry = notebookData[dateStr];
+            if (entry && entry.id) {
+                const { error } = await supabase
+                    .from('notebook_entries')
+                    .delete()
+                    .eq('id', entry.id)
+                    .eq('user_id', currentUser.id);
+                
+                if (error) {
+                    console.error('Error eliminando:', error);
+                    return false;
+                }
+            }
+            
+            delete notebookData[dateStr];
+            return true;
+        }
+
+        // ==================================================
+        // FUNCIONES DE UI
+        // ==================================================
+
         function getDayData(dateStr) {
             if (!notebookData[dateStr]) {
-                notebookData[dateStr] = {
-                    notes: "",
-                    todos: []
-                };
+                return { notes: "", todos: [] };
             }
             return notebookData[dateStr];
         }
 
-        // Formatear fecha
         function formatDate(date) {
             return date.toISOString().split('T')[0];
         }
 
-        // Obtener nombre del día
         function getDayName(date) {
             const days = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
             return days[date.getDay()];
         }
 
-        // Renderizar vista de días del mes
-        function renderCurrentView() {
+        async function renderCurrentView() {
+            if (!currentUser) return;
+            
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
             
@@ -658,7 +934,7 @@
             
             const days = [];
             
-            // Días del mes anterior para completar grid
+            // Días del mes anterior
             const prevMonthLastDay = new Date(year, month, 0).getDate();
             for (let i = startWeekday - 1; i >= 0; i--) {
                 const dayNum = prevMonthLastDay - i;
@@ -702,7 +978,6 @@
                 `;
             }).join('');
             
-            // Agregar event listeners a las tarjetas
             document.querySelectorAll('.day-card').forEach(card => {
                 card.addEventListener('click', () => {
                     const date = card.dataset.date;
@@ -717,7 +992,6 @@
             const container = document.getElementById('monthSelector');
             const months = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
             const currentMonth = currentDate.getMonth();
-            const currentYear = currentDate.getFullYear();
             
             container.innerHTML = months.map((month, idx) => {
                 const isActive = idx === currentMonth;
@@ -733,7 +1007,7 @@
             });
         }
         
-        function openModal(dateStr) {
+        async function openModal(dateStr) {
             currentEditingDate = dateStr;
             const date = new Date(dateStr);
             const dayData = getDayData(dateStr);
@@ -741,7 +1015,7 @@
             document.getElementById('modalDateTitle').textContent = `${getDayName(date)} ${date.getDate()} · ${date.toLocaleString('es', { month: 'long' }).toUpperCase()} ${date.getFullYear()}`;
             document.getElementById('notesContent').value = dayData.notes || '';
             
-            renderTodoList(dayData.todos);
+            renderTodoList(dayData.todos || []);
             
             document.getElementById('dayModal').classList.add('active');
         }
@@ -761,24 +1035,25 @@
                 </div>
             `).join('');
             
-            // Event listeners para checkboxes y delete
             document.querySelectorAll('.todo-checkbox').forEach((checkbox, idx) => {
-                checkbox.addEventListener('change', (e) => {
+                checkbox.addEventListener('change', async () => {
                     const todoId = todos[idx].id;
-                    const dayData = notebookData[currentEditingDate];
+                    const dayData = getDayData(currentEditingDate);
                     const todo = dayData.todos.find(t => t.id === todoId);
-                    if (todo) todo.completed = checkbox.checked;
-                    saveData();
-                    renderTodoList(dayData.todos);
+                    if (todo) {
+                        todo.completed = checkbox.checked;
+                        await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
+                        renderTodoList(dayData.todos);
+                    }
                 });
             });
             
             document.querySelectorAll('.delete-todo').forEach((btn, idx) => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', async () => {
                     const todoId = todos[idx].id;
-                    const dayData = notebookData[currentEditingDate];
+                    const dayData = getDayData(currentEditingDate);
                     dayData.todos = dayData.todos.filter(t => t.id !== todoId);
-                    saveData();
+                    await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
                     renderTodoList(dayData.todos);
                 });
             });
@@ -790,15 +1065,20 @@
             return div.innerHTML;
         }
         
-        function saveCurrentDay() {
+        async function saveCurrentDay() {
             if (!currentEditingDate) return;
             
             const notes = document.getElementById('notesContent').value;
-            const dayData = notebookData[currentEditingDate];
-            dayData.notes = notes;
+            const dayData = getDayData(currentEditingDate);
+            const todos = dayData.todos || [];
             
-            saveData();
-            closeModal();
+            const success = await saveDayData(currentEditingDate, notes, todos);
+            
+            if (success) {
+                closeModal();
+                renderCurrentView();
+                updateStats();
+            }
         }
         
         function closeModal() {
@@ -806,7 +1086,9 @@
             currentEditingDate = null;
         }
         
-        function updateStats() {
+        async function updateStats() {
+            if (!currentUser) return;
+            
             const totalDays = Object.keys(notebookData).length;
             let totalNotes = 0;
             let totalTodos = 0;
@@ -818,11 +1100,14 @@
             
             document.getElementById('stats').innerHTML = `
                 <span>🌀 NEXUS STATS · ${totalDays} DÍAS ACTIVOS · ${totalNotes} REGISTROS · ${totalTodos} TAREAS</span>
-                <br><span style="font-size:0.8rem;">💾 DATOS SINCRONIZADOS · ALMACENAMIENTO LOCAL</span>
+                <br><span style="font-size:0.8rem;">💾 DATOS SINCRONIZADOS · SUPABASE CLOUD</span>
             `;
         }
+
+        // ==================================================
+        // EVENT LISTENERS
+        // ==================================================
         
-        // Navegación
         document.getElementById('prevMonth').addEventListener('click', () => {
             currentDate.setMonth(currentDate.getMonth() - 1);
             renderCurrentView();
@@ -842,34 +1127,51 @@
         document.getElementById('closeModal').addEventListener('click', closeModal);
         document.getElementById('cancelModal').addEventListener('click', closeModal);
         
-        document.getElementById('addTodoBtn').addEventListener('click', () => {
+        document.getElementById('addTodoBtn').addEventListener('click', async () => {
             const input = document.getElementById('newTodoInput');
             const text = input.value.trim();
             if (text && currentEditingDate) {
-                const dayData = notebookData[currentEditingDate];
+                const dayData = getDayData(currentEditingDate);
                 if (!dayData.todos) dayData.todos = [];
                 dayData.todos.push({
                     id: Date.now(),
                     text: text,
                     completed: false
                 });
-                saveData();
+                await saveDayData(currentEditingDate, dayData.notes, dayData.todos);
                 renderTodoList(dayData.todos);
                 input.value = '';
             }
         });
         
-        // Cerrar modal con ESC
+        document.getElementById('loginBtn').addEventListener('click', login);
+        document.getElementById('registerBtn').addEventListener('click', register);
+        document.getElementById('logoutBtn').addEventListener('click', logout);
+        
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.getElementById('dayModal').classList.contains('active')) {
                 closeModal();
             }
         });
         
-        // Inicializar
-        loadData();
-        renderCurrentView();
-        updateStats();
+        // ==================================================
+        // INICIALIZACIÓN
+        // ==================================================
+        
+        checkSession();
+        
+        // Escuchar cambios de autenticación
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (session) {
+                currentUser = session.user;
+                showAuthenticatedView();
+                loadAllUserData();
+            } else {
+                currentUser = null;
+                showUnauthenticatedView();
+                notebookData = {};
+            }
+        });
     </script>
 </body>
 </html>
